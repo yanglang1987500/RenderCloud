@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/dist/modules/index.css'/>
+</head>
+<body>
+<%
+	include public/header.html
+%>
+<div class="container">
+    <div class="tablecontainer">
+        <table id="dataTable"></table>
+    </div>
+    <div id="dialog"></div>
+</div>
+<div id="home_tb" style="padding:5px;height:auto">
+    <div style="margin-bottom:5px">
+        <input id="home-easyui-searchbox"  style="width:200px"/>
+    </div>
+</div>
+<iframe id="exportFrame"></iframe>
+
+<script src="/dist/modules/common.js"></script>
+<script src="/dist/modules/index.js"></script>
+</body>
+</html>

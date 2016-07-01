@@ -1,0 +1,206 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body,html{
+    height:100%;
+    background: #fef7f4;
+    overflow: hidden;
+    font-family: MicroSoft Yahei;
+    color:#242A38;
+    font-size: 14px;
+}
+.container{
+    height:100%;
+    position: relative;
+    .topbar{
+        position: fixed;
+        padding-left: 250px;
+        top:0;
+        left:0;
+        height:60px;
+        width:100%;
+        background: #fff;
+        border-bottom: 1px solid #e5e5e5;
+        z-index: 1;
+        .toolbar{
+            float:right;
+            height:60px;
+            line-height: 60px;
+            *zoom:1;
+            &>*{
+                float:left;
+            }
+            &>.btn{
+                width: 70px;
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 60px;
+                cursor: pointer;
+                transition: .3s all ease;
+                &:hover{
+                    background-color: #fff3ec;
+                }
+            }
+            #configBtn{
+                background-image: url('../images/framework/config.png') ;
+                position: relative;
+                #configMenu{
+                    position: absolute;
+                    top: 60px;
+                    left: 0px;
+                    width: 200px;
+                    background-color: #fff;
+                    list-style: none;
+                    box-shadow: 1px 1px 8px #b9b9b9;
+                    display: none;
+                    &>li{
+                        line-height:50px;
+                        height:50px;
+                        padding: 0 40px;
+                        font-size: 16px;
+                        background-repeat:no-repeat;
+                        background-size:20px 20px;
+                        background-position: 10px center;
+                    &:hover{
+                            background-color:#FEF7F4;
+                        }
+                        &#modifyPassword{
+                            background-image:url('../images/framework/modifypassword.png');
+                            &:hover{
+                                background-image:url('../images/framework/modifypassword_hover.png');
+                            }
+                        }
+                    }
+                }
+                &:hover{
+                    #configMenu{
+                        display:block;
+                    }
+                }
+            }
+            #returnBtn{
+                background-image: url('../images/framework/return.png') ;
+            }
+            #nextBtn{
+                background-image: url('../images/framework/next.png') ;
+            }
+            #logoutBtn{
+                background-image: url('../images/framework/logout.png') ;
+            }
+            #userInfo{
+                line-height: 60px;
+                padding:0 20px;
+                width:auto;
+                #userName{
+                    margin-left:5px;
+                }
+                #userBtn{
+                    height:40px;
+                    vertical-align: middle;
+                    margin-bottom: 3px;
+                }
+            }
+        }
+    }
+    .logobar{
+        width:250px;
+        height:60px;
+        line-height: 60px;
+        font-size: 18px;
+        color:#fff;
+        padding:0 20px;
+        background-color:#FF6C3F ;
+        position: absolute;
+        left:0;
+        top:0;
+        z-index: 3;
+    }
+    .welcomeinfo{
+        line-height: 60px;
+        height: 60px;
+        margin-left:40px;
+        float:left;
+    }
+    .menubar{
+        padding-top: 60px;
+        position: absolute;
+        left:0;
+        width:250px;
+        height:100%;
+        background-color: #32394B;
+        z-index: 2;
+        ul#menu {
+            padding: 5px 0 0 0px;
+            list-style: none;
+            line-height: 55px;
+            color: #fff;
+            font-size: 14px;
+            li {
+                transition: .5s background-color ease;
+                color: #Fff;
+                padding-left: 60px;
+                cursor: pointer;
+                background-repeat: no-repeat;
+                background-position: 10px center;
+                margin:5px 0;
+                position: relative;
+                &:hover,&.actived {
+                    background-position: 15px center;
+                    background-color:#6D768B ;
+                }
+                &.actived{
+                    box-shadow: 0 1px 2px rgba(54, 59, 74, 0.88) inset;
+                    &:after {
+                        content: '';
+                        width: 16px;
+                        height: 29px;
+                        position: absolute;
+                        right: 0px;
+                        top: 12px;
+                        background-image: url("../images/framework/menu_arrow.png");
+                        background-repeat: no-repeat;
+                    }
+                }
+                &#immediateSearch{
+                    background-image: url("../images/framework/icon1.png");
+                }
+                &#aboutus{
+                    background-image: url("../images/framework/aboutus.png");
+                }
+                &#historySearch{
+                    background-image: url("../images/framework/cloud.png");
+                }
+            }
+        }
+    }
+    .split{
+        border-left:1px solid #ccc;
+        border-right:1px solid #eee;
+        height:30px;
+        margin:15px 2px 0 2px;
+    }
+    #main{
+        height:100%;
+        width:100%;
+        padding:75px 15px 15px 265px;
+        overflow: auto;
+        &>div{
+            box-shadow: 1px 1px 3px #ccc;
+            background-color: #fff;
+        }
+    }
+
+}
+#framework_dialog{
+    border:0;
+}
+
+.clearfix:after{
+    content:'';
+    display: table;
+    clear:both;
+}
+
+

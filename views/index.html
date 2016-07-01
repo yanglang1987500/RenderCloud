@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>迅染云平台机时查询平台</title>
+    <!--[if lte IE 8]>
+    <script src="ieBetter.js"></script>
+    <![endif]-->
+    <link rel='stylesheet' href='/dist/modules/animation.css'/>
+    <link rel='stylesheet' href='/dist/modules/index.css'/>
+</head>
+<body>
+    <div class="container">
+        <div class="logobar">迅染云平台机时查询平台</div>
+        <div class="topbar">
+            <p class="welcomeinfo">您好，<%=session.userInfo.username%>，欢迎回来</p>
+            <div class="toolbar clearfix">
+                <div class="btn" id="returnBtn"></div>
+                <div class="btn" id="nextBtn"></div>
+                <div class="btn" id="configBtn">
+                    <ul id="configMenu">
+                        <li id="modifyPassword">修改密码</li>
+                    </ul>
+                </div>
+                <div class="btn" id="userInfo">
+                    <img id="userBtn" src="dist/images/framework/user.png">
+                    <span id="userName"><%=session.userInfo.username%></span>
+                </div>
+                <div class="split"></div>
+                <div class="btn" id="logoutBtn"></div>
+            </div>
+        </div>
+        <div class="menubar">
+            <ul id="menu">
+                <li data-modules="./modules/job"  id="immediateSearch">作业实时查询</li>
+                <li data-modules="./modules/historyJob" id="historySearch">作业机时查询</li>
+                <li id="aboutus" data-modules="./modules/aboutus">关于我们</li>
+            </ul>
+        </div>
+        <div id="main"></div>
+    </div>
+    <div id="framework_dialog"></div>
+    <script src="/dist/modules/common.js"></script>
+    <script src="/dist/modules/index.js"></script>
+</body>
+</html>
