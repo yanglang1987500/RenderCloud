@@ -10,7 +10,7 @@ var Calendar = require('../libs/calendar.js');
 
 /* GET home page. */
 router.get('/details', function (req, res, next) {
-    if (req.session.isLogin) {
+    if (req.session.isLogin) { 
         var jobId = req.query.jobId;
         res.render('details', {jobId: jobId});
     }
