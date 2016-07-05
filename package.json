@@ -32,6 +32,8 @@
     "jsx-loader": "^0.13.2",
     "later": "^1.2.0",
     "mongodb": "^2.1.18",
+    "mysql": "^2.11.1",
+    "node-mysql": "^0.4.2",
     "node-rest-client": "^1.8.0",
     "node-sass": "^3.5.1",
     "node-xlsx": "^0.6.0",

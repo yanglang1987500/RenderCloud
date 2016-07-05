@@ -19,5 +19,5 @@ module.exports = [
         return val;
     }
     },
-    {field: 'Aux', title: '场景文件', width: 350}
+    {field: 'Aux.0', title: '场景文件', width: 350}
 ];

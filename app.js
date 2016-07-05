@@ -80,5 +80,5 @@ process.on('uncaughtException', function (err) {
   console.log('exception catch ...');
   console.log(err.stack);
 });
-app.listen(8088);
+app.listen(8080);
 module.exports = app;
