@@ -1,6 +1,5 @@
 /*Created by ChenZhang on 2016/7/4.*/
 var express = require('express');
-var Client = require('node-rest-client').Client;
 var later = require('later');
 var mysql = require('mysql');
 var jobDao = require('../daos/jobDao');
