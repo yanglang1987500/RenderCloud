@@ -51,5 +51,10 @@ module.exports = {
                 }
             });
         }
+    },
+    queryJobDetails:function(host,jobId,callback){
+        client.get(host+'/api/tasks?JobID=' + jobId, function (data, response) {
+            callback && callback(JSON.parse(data.toString()));
+        });
     }
 };

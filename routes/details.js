@@ -5,12 +5,13 @@ var guid = require('guid');
 var xlsx = require('node-xlsx');
 var router = express.Router();
 var client = new Client();
+var jobDao = require('../daos/jobDao');
 var Calendar = require('../libs/calendar.js');
 
 
 /* GET home page. */
 router.get('/details', function (req, res, next) {
-    if (req.session.isLogin) { 
+    if (req.session.isLogin) {
         var jobId = req.query.jobId;
         res.render('details', {jobId: jobId});
     }
@@ -24,8 +25,8 @@ router.get('/getTask', function (req, res, next) {
         var host = decodeURIComponent(req.query.host);
         host = host ? host : 'http://10.175.9.15:8080/';
         console.log('call:'+host+'/api/tasks?JobID=' + req.query.jobId);
-        client.get(host+'/api/tasks?JobID=' + req.query.jobId, function (data, response) {
-            res.json(JSON.parse(data.toString()));
+        jobDao.queryJobDetails(host,req.query.jobId,function(data){
+            res.json(data);
         });
     }
 });
@@ -36,8 +37,7 @@ router.get('/export', function (req, res, next) {
         var taskName = req.query.taskName;
         host = host ? host : 'http://10.175.9.15:8080/';
         console.log('call:'+host+'/api/tasks?JobID=' + req.query.jobId);
-        client.get(host+'/api/tasks?JobID=' + req.query.jobId, function (data, response) {
-            data = JSON.parse(data.toString());
+        jobDao.queryJobDetails(host,req.query.jobId,function(data){
             //加载表格列配置文件
             var columns = require('../configs/modules/jobDetailColumn');
             var datas = [];
