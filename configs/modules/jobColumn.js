@@ -1,6 +1,6 @@
 module.exports = [
     {field: 'Props.Name', title: '作业名称', width: 350},
-    {field: 'Props.User', title: '所有者', width: 400},
+    {field: 'Props.User', title: '所有者', width: 150},
     {field: 'Props.Frames', title: '帧序范围', width: 200},
     {
         field: 'DateStart', title: '开始时间', width: 200, formatter: function (val) {
