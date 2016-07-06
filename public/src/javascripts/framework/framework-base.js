@@ -360,7 +360,7 @@ Framework.prototype = {
         var that = this;
         switch (this.getShowType()) {
             case 'Normal':
-                var $mainview = $("#main");
+                var $mainview = $("#framework-content-main");
                 $mainview.html(data);
                 that.dom = $mainview;
                 Events.notifyWith('onRendered',that,that.dom);

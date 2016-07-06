@@ -51,9 +51,10 @@ function fetchJobData(){
                                         continue;
                                     row.push(data.Tasks[i][columns[j].field]);
                                 }
+                                row.push(item._id);
                                 detailArr.push(row);
                             }
-                            var detailsql = 'INSERT INTO jobdetails(id,frames,starttime,startren,comptime,progress,error) VALUES ?';
+                            var detailsql = 'INSERT INTO jobdetails(id,frames,starttime,startren,comptime,progress,error,jobid) VALUES ?';
                             connection.query(detailsql,[detailArr],function(){});
                         });
                         jobArr.push(items);
@@ -67,3 +68,5 @@ function fetchJobData(){
         });
     });
 }
+
+fetchJobData();
