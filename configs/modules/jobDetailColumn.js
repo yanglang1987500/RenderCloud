@@ -29,7 +29,7 @@ module.exports = [
     {
         field: 'Prog', title: '进度', width: 400,
         formatter: function (val) {
-            return '<div style="width:100%;background:#F6FBFC;border:1px solid #9DBAC0;height:20px;text-align: center;line-height: 20px;position: relative"><span style="color: #3C3C3C;position:absolute;left:40%;top:0px;">' + val + '</span><div style="width:' + val.replace(/\s/gm, '') + ';height:100%;background: #51C1DD"></div></div>';
+            return '<div style="width:100%;background:#F6FBFC;border:1px solid #b9cee8;height:20px;border-radius: 3px;text-align: center;line-height: 20px;position: relative"><span style="color: #3C3C3C;position:absolute;left:40%;top:0px;">' + val + '</span><div style="width:' + val.replace(/\s/gm, '') + ';height:100%;background: #D0E4FD;border-radius:3px;"></div></div>';
         },
         formatter_back: function (val) {
             return val;
