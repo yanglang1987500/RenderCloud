@@ -189,6 +189,10 @@ body,html{
         & .shadow-block{
             box-shadow: 1px 1px 3px #ccc;
             background-color: #fff;
+            transition:.3s all linear;
+            &:hover{
+                box-shadow: 1px 1px 6px #b7b7b7;
+            }
         }
     }
 
