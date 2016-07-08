@@ -278,6 +278,20 @@ Framework.prototype = {
         return this.dom;
     },
     /**
+     * 加载页面片段
+     * @param url
+     * @param _param
+     * @param callback
+     */
+    loadFragment:function(url,_param,callback){
+        var $def = $.Deferred();
+        $.get(url,function(data){
+            callback&&callback(data);
+            $def.resolve(data);
+        });
+        return $def.promise();
+    },
+    /**
      * post查询，异步执行，<br>
      * 返回json。<br>
      * @method query

@@ -9,16 +9,6 @@ var jobDao = require('../daos/jobDao');
 var Calendar = require('../libs/calendar.js');
 
 
-/* GET home page. */
-router.get('/details', function (req, res, next) {
-    if (req.session.isLogin) {
-        var jobId = req.query.jobId;
-        res.render('details', {jobId: jobId});
-    }
-    else
-        res.redirect('/login');
-});
-
 router.get('/getTask', function (req, res, next) {
     if (req.session.isLogin) {
 

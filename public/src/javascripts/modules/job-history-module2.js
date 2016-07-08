@@ -15,30 +15,20 @@ JobHistoryModule2.prototype.init = function(options){
     this.options = $.extend({},options);
     that.setTitle('history-module2').setHeight(700).setWidth(780);
 
-    var myChart = echarts.init($('#main2',this.dom)[0]);
-    myChart.setOption({
-        backgroundColor: '#fff',
-        series : [
-            {
-                name: '访问来源2',
-                type: 'pie',
-                roseType: 'angle',
-                radius: '55%',
-                data:[
-                    {value:400, name:'搜索引擎2'},
-                    {value:335, name:'直接访问2'},
-                    {value:310, name:'邮件营销2'},
-                    {value:274, name:'联盟广告2'},
-                    {value:235, name:'视频广告2'}
-                ]
-            }
-        ],
-        itemStyle: {
-            emphasis: {
-                shadowBlur: 200,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-        }
+    var columns = require('../../../../configs/modules/jobColumn.js');
+    var $table = $('#main2>.tablecontainer').datagrid({
+        url: '/getJobs',
+        method: 'get',
+        columns: [columns],
+        pagination: false,
+        pageSize: 30,
+        ctrlSelect: true,
+        checkOnSelect: true,
+        selectOnCheck: true,
+        loadMsg: '正在查询，请稍候……',
+        striped: true,
+        fit: true,
+        fitColumns: false
     });
 };
 

@@ -28,13 +28,15 @@ HistoryJob.prototype.init = function(options){
 };
 
 HistoryJob.prototype.loadBaseView = function(){
-    var key = '';
-    var html = require('../../../../views/modules/job-history.html');
-    this.render(html);
-    var module1 = require('./job-history-module1');
-    module1.init();
-    var module2 = require('./job-history-module2');
-    module2.init();
+    var key = '',that = this;
+    this.loadFragment('/views/modules/job-history.html').then(function(html){
+        that.render(html);
+        var module1 = require('./job-history-module1');
+        module1.init();
+        var module2 = require('./job-history-module2');
+        module2.init();
+    });
+
 };
 
 

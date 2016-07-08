@@ -37,6 +37,20 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('*', function(req,res,next){
+  //鉴权
+  console.log('鉴权');
+  next();
+});
+app.get('*', function(req,res,next){
+  //加载模块页
+  var url = req.originalUrl;
+  if(/^\/views\/(modules\/.*)\.html$/.test(url)){
+    res.render(RegExp.$1);
+  }else{
+    next();
+  }
+});
 /**
  * 加载路由配置
  */
@@ -80,5 +94,9 @@ process.on('uncaughtException', function (err) {
   console.log('exception catch ...');
   console.log(err.stack);
 });
+
+app.locals.format = function(val){
+  return val;
+};
 app.listen(8080);
 module.exports = app;
