@@ -49,13 +49,14 @@ HistoryJob.prototype.bindEvents = function(){
         var value = $(this).val();
         Events.notify('onRefresh:job-history',{type:value});
     });
-    $(window).resize(function(){
-        var containerWidth = $(that.dom).width();
-        $('#main',that.dom).width(containerWidth*.7-15);
-        $('#main2',that.dom).width(containerWidth*.28-15);
-        that.module1.resize();
-    });
+
 };
+var historyJob = new HistoryJob();
+$(window).resize(function(){
+    var containerWidth = $(historyJob.dom).width();
+    $('#main',historyJob.dom).width(containerWidth*.7-15);
+    $('#main2',historyJob.dom).width(containerWidth*.28-15);
+    historyJob.module1.resize();
+});
 
-
-module.exports = new HistoryJob();
+module.exports = historyJob;
