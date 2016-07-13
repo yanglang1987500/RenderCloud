@@ -32,8 +32,9 @@ JobHistoryModule1.prototype.refreshChart = function (option) {
             {
                 backgroundColor:'#fff',
                 legend: {
-                    data: ['bar'],
-                    align: 'left'
+                    data: ['机时数'],
+                    align: 'left',
+                    top:5
                 },
                 toolbox: {
                     // y: 'bottom',
@@ -56,7 +57,8 @@ JobHistoryModule1.prototype.refreshChart = function (option) {
                     name: '机时数',
                     type: 'bar',
                     data: data1
-                }]
+                }],
+                color:['#FF6C3F']
             });
     });
 };
