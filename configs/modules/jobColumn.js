@@ -11,7 +11,7 @@ module.exports = [
         field: 'DateComp', title: '结束时间', width: 160, formatter: function (val) {
         var value = Calendar.getInstance(val).format('yyyyMMdd HH:mm:ss');
         if(value == '20010101 00:00:00')
-            return "----"
+            return "-------";
         else
             return value;
     }
@@ -21,7 +21,7 @@ module.exports = [
         field: 'SnglTskPrg', title: '状态', width: 100, formatter: function (val,row) {
         var value = Calendar.getInstance(row.DateComp).format('yyyyMMdd HH:mm:ss');
         if(value == '20010101 00:00:00')
-            return "正在运行"
+            return "正在运行";
         else
             return '已完成';
     }, formatter_back: function (val) {
