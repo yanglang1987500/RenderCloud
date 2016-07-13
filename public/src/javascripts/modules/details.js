@@ -8,7 +8,7 @@ require('../../stylesheets/easyui.css');
 var JobDetails = function () {
 };
 
-//继承自账户基类
+//继承自框架基类
 JobDetails.prototype = $.extend({}, frameworkBase);
 JobDetails.prototype.id = 'details';
 
@@ -32,7 +32,7 @@ JobDetails.prototype.init = function (options) {
 JobDetails.prototype.loadBaseView = function () {
     var that = this;
     var key = '';
-    var html = require('../../../../views/modules/details.html');
+    var html = require('../../../../views/modules/job-details.html');
     this.render(html);
     var columns = require('../../../../configs/modules/jobDetailColumn.js');
     var $table = $('#taskTable').datagrid({

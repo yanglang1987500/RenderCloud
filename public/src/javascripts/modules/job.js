@@ -9,7 +9,7 @@ require('../../stylesheets/easyui.css');
 var Job = function () {
 };
 
-//继承自账户基类
+//继承自框架基类
 Job.prototype = $.extend({}, frameworkBase);
 Job.prototype.id = 'job';
 

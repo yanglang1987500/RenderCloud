@@ -7,7 +7,7 @@ require('../../stylesheets/modules/job-details.scss');
 var JobDetails = function () {
 };
 
-//继承自账户基类
+//继承自框架基类
 JobDetails.prototype = $.extend({}, frameworkBase);
 JobDetails.prototype.id = 'job-details';
 

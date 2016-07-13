@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var userDao = require('../daos/userDao');
 var utils = require('../libs/utils');
+var context = require('../framework/context');
 
 
 /* GET home page. */
@@ -16,7 +17,7 @@ router.post('/login', function (req, res, next) {
     var username = req.body.username,usercode;
     var password = req.body.password;
     var remember = req.body.remember;
-    if(utils.isLocal()){
+    if(context.isLocal()){
         usercode = username;
         doCheck(username,utils.md5('123456'));
     }else{

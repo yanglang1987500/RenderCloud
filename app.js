@@ -8,16 +8,26 @@ var bodyParser = require('body-parser');
 var rd = require('rd');
 
 
-
 var ejs = require('ejs');
 
 var app = express();
-
-
+//初始化上下文对象
+var context = require('./framework/context');
+context.setApp(app);
+//引入权限控制初始化
+var authority = require('./framework/authority');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.engine('html', ejs.renderFile);
+app.engine('html', function(){
+  //处理权限标签
+  var args = arguments;
+  ejs.renderFile.apply(this,[].slice.call(arguments,0,2).concat([function(err,data){
+    if(args.length==3){
+      args[2].apply(this,[null,authority.parse(data,args[1])]);
+    }
+  }]));
+});
 app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
@@ -37,11 +47,9 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('*', function(req,res,next){
-  //鉴权
-  console.log('鉴权');
-  next();
-});
+
+
+
 app.get('*', function(req,res,next){
   //加载模块页
   var url = req.originalUrl;
@@ -95,8 +103,6 @@ process.on('uncaughtException', function (err) {
   console.log(err.stack);
 });
 
-app.locals.format = function(val){
-  return val;
-};
+
 app.listen(8080);
 module.exports = app;

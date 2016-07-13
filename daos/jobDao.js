@@ -28,21 +28,21 @@ module.exports = {
             return when.promise(function(resolve){
                 var req = client.get(url, args,function (data, response) {
                     data = JSON.parse(data.toString());
-                    console.log('resolve url:'+url);
+                    //console.log('resolve url:'+url);
                     ret(data);
                 });
                 req.on('requestTimeout', function (req) {
-                    console.log('request has expired');
+                    //console.log('request has expired');
                     ret([]);
                 });
 
                 req.on('responseTimeout', function (res) {
-                    console.log('response has expired');
+                    //console.log('response has expired');
                     ret([]);
                 });
 
                 req.on('error', function (err) {
-                    console.log('request error', err);
+                    //console.log('request error', err);
                     ret([]);
                 });
                 function ret(data){

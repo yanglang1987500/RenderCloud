@@ -292,7 +292,7 @@ Framework.prototype = {
         return $def.promise();
     },
     /**
-     * post查询，异步执行，<br>
+     * get查询，异步执行，<br>
      * 返回json。<br>
      * @method query
      * @async
@@ -309,10 +309,10 @@ Framework.prototype = {
         } else if (aLen == 3) {
             param = _param, callback = _callback;
         }
-        return this._doPostJson(url, param, callback, true);
+        return this._doGetJson(url, param, callback, true);
     },
     /**
-     * post查询 同步执行<br>
+     * get查询 同步执行<br>
      * 返回json<br>
      * @method querySync
      * @param {String} url 查询地址
@@ -328,9 +328,47 @@ Framework.prototype = {
         } else if (aLen == 3) {
             param = _param, callback = _callback;
         }
-        return this._doPostJson(url, param, callback, false);
+        return this._doGetJson(url, param, callback, false);
     },
-
+    /**
+     * post保存，异步执行，<br>
+     * 返回json。<br>
+     * @method save
+     * @async
+     * @param {String} url 查询地址
+     * @param _param 参数对象 可选
+     * @param {Function} _callback 回调方法 可选
+     */
+    save: function (url, _param, _callback) {
+        var that = this, aLen = arguments.length, callback, param;
+        if (aLen == 2) {
+            if ($.isFunction(_param)) {
+                callback = _param;
+            }
+        } else if (aLen == 3) {
+            param = _param, callback = _callback;
+        }
+        return this._doGetJson(url, param, callback, true);
+    },
+    /**
+     * post保存 同步执行<br>
+     * 返回json<br>
+     * @method saveSync
+     * @param {String} url 查询地址
+     * @param _param 参数对象 可选
+     * @param {Function} _callback 回调方法 可选
+     */
+    saveSync: function (url, _param, _callback) {
+        var that = this, aLen = arguments.length, callback, param;
+        if (aLen == 2) {
+            if ($.isFunction(_param)) {
+                callback = _param;
+            }
+        } else if (aLen == 3) {
+            param = _param, callback = _callback;
+        }
+        return this._doGetJson(url, param, callback, false);
+    },
     /**
      * 执行post查询<br>
      * 返回json<br>
@@ -359,6 +397,44 @@ Framework.prototype = {
             }
         });
         return ajax;
+    },
+    /**
+     * 执行post查询<br>
+     * 返回json<br>
+     * 内部使用<br>
+     * @method _doPostJson
+     * @private
+     * @param {String} url 查询地址
+     * @param param 参数对象
+     * @param {Function} callback 回调方法
+     * @param {Boolean} async 是否异步
+     */
+    _doGetJson: function (url, param, callback, async) {
+        var ajax = $.ajax({
+            url: url,
+            type: 'get',
+            dataType: 'json',
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            async: async,
+            data: param,
+            success: function (json) {
+                if (callback)
+                    callback(json);
+            },
+            error: function(){
+                console.log("error");
+            }
+        });
+        return ajax;
+    },
+    stringifyParam:function(param,split1,split2){
+        if(!param)
+            return '';
+        var arr = [];
+        for(var key in param){
+            arr.push(key+split1+param[key]);
+        }
+        return arr.join(split2);
     },
     /**
      * 设置显示区域容器的内容<br>

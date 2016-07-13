@@ -3,7 +3,7 @@ var frameworkBase = require('../framework/framework-base');
 require('../../stylesheets/modules/aboutus.scss');
 var AboutUs = function(){ };
 
-//继承自账户基类
+//继承自框架基类
 AboutUs.prototype = $.extend({},frameworkBase);
 AboutUs.prototype.id = 'aboutus';
 

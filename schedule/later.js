@@ -11,10 +11,10 @@ var schedule = {
     schedules:composite
 };
 var occurrences = later.schedule(schedule).next(10);
-console.log(occurrences);
+/*console.log(occurrences);
 for(var i = 0; i < occurrences.length; i++) {
     console.log(occurrences[i]);
-}
+}*/
 later.setInterval(function(){fetchJobData();},schedule);
 
 function fetchJobData(){
@@ -47,14 +47,15 @@ function fetchJobData(){
                             for (var i = 0; i < data.Tasks.length; i++) {
                                 var row = [Guid.raw()];
                                 for (var j = 0; j < columns.length; j++) {
-                                    if(columns[j].field == 'singleTime')
-                                        continue;
-                                    row.push(data.Tasks[i][columns[j].field]);
+                                    if(columns[j].field == 'singleTime'){
+                                        row.push(columns[j].formatter(null,data.Tasks[i]));
+                                    }else
+                                        row.push(data.Tasks[i][columns[j].field]);
                                 }
                                 row.push(item._id);
                                 detailArr.push(row);
                             }
-                            var detailsql = 'INSERT INTO jobdetails(id,frames,starttime,startren,comptime,progress,error,jobid) VALUES ?';
+                            var detailsql = 'INSERT INTO jobdetails(id,frames,starttime,startren,comptime,progress,error,singletime,jobid) VALUES ?';
                             connection.query(detailsql,[detailArr],function(){});
                         });
                         jobArr.push(items);

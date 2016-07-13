@@ -9,7 +9,7 @@ require('../../stylesheets/modules/job-history.scss');
 require('../../stylesheets/easyui.css');
 var HistoryJob = function(){ };
 
-//继承自账户基类
+//继承自框架基类
 HistoryJob.prototype = $.extend({},frameworkBase);
 HistoryJob.prototype.id = 'job-history';
 
@@ -22,7 +22,7 @@ HistoryJob.prototype.id = 'job-history';
 HistoryJob.prototype.init = function(options){
     var that = this;
     this.options = $.extend({},options);
-    that.setTitle('查询分析').setHeight(700).setWidth(780);
+    that.setTitle('机时统计分析').setHeight(700).setWidth(780);
     frameworkBase.init.call(this,options);
     this.loadBaseView();
 };
@@ -31,12 +31,23 @@ HistoryJob.prototype.loadBaseView = function(){
     var key = '',that = this;
     this.loadFragment('/views/modules/job-history.html').then(function(html){
         that.render(html);
-        var module1 = require('./job-history-module1');
+        that.bindEvents();
+        var containerWidth = $(that.dom).width();
+        $('#main',that.dom).width(containerWidth*.7-15);
+        $('#main2',that.dom).width(containerWidth*.28-15);
+        var module1 = require('./job-history-chart1');
         module1.init();
-        var module2 = require('./job-history-module2');
+        var module2 = require('./job-history-table1');
         module2.init();
+        Events.notify('onRefresh:job-history',{type:0});
     });
 
+};
+HistoryJob.prototype.bindEvents = function(){
+    $('#jobHistoryGrainSelector',this.dom).on('change',function(){
+        var value = $(this).val();
+        Events.notify('onRefresh:job-history',{type:value});
+    });
 };
 
 

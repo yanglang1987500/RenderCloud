@@ -3,9 +3,9 @@ var frameworkBase = require('../framework/framework-base');
 require('../../stylesheets/modules/passwordmodify.scss');
 var PasswordModify = function(){ };
 
-//继承自账户基类
+//继承自框架基类
 PasswordModify.prototype = $.extend({},frameworkBase);
-PasswordModify.prototype.id = 'passwordmodify';
+PasswordModify.prototype.id = 'passwordModify';
 
 
 /**
