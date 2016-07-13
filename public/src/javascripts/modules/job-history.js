@@ -35,18 +35,25 @@ HistoryJob.prototype.loadBaseView = function(){
         var containerWidth = $(that.dom).width();
         $('#main',that.dom).width(containerWidth*.7-15);
         $('#main2',that.dom).width(containerWidth*.28-15);
-        var module1 = require('./job-history-chart1');
-        module1.init();
-        var module2 = require('./job-history-table1');
-        module2.init();
+        that.module1 = require('./job-history-chart1');
+        that.module1.init();
+        that.module2 = require('./job-history-table1');
+        that.module2.init();
         Events.notify('onRefresh:job-history',{type:0});
     });
 
 };
 HistoryJob.prototype.bindEvents = function(){
+    var that = this;
     $('#jobHistoryGrainSelector',this.dom).on('change',function(){
         var value = $(this).val();
         Events.notify('onRefresh:job-history',{type:value});
+    });
+    $(window).resize(function(){
+        var containerWidth = $(that.dom).width();
+        $('#main',that.dom).width(containerWidth*.7-15);
+        $('#main2',that.dom).width(containerWidth*.28-15);
+        that.module1.resize();
     });
 };
 

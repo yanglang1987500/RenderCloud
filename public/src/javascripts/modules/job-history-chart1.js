@@ -62,6 +62,11 @@ JobHistoryModule1.prototype.refreshChart = function (option) {
             });
     });
 };
+
+JobHistoryModule1.prototype.resize = function () {
+    this.myChart.resize();
+};
+
 var jobHistoryModule1 = new JobHistoryModule1();
 
 Events.subscribe('onRefresh:job-history',function(option){

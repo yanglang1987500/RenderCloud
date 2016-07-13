@@ -9,12 +9,20 @@ module.exports = [
     },
     {
         field: 'DateComp', title: '结束时间', width: 200, formatter: function (val) {
-        return Calendar.getInstance(val).format('yyyyMMdd HH:mm:ss');
+        var value = Calendar.getInstance(val).format('yyyyMMdd HH:mm:ss');
+        if(value == '20010101 00:00:00')
+            return "----"
+        else
+            return value;
     }
     },
     {
-        field: 'SnglTskPrg', title: '状态', width: 200, formatter: function (val) {
-        return '<div style="width:100%;background:#F6FBFC;border:1px solid #b9cee8;height:20px;border-radius: 3px;text-align: center;line-height: 20px;position: relative"><span style="color: #3C3C3C;position:absolute;left:40%;top:0px;">' + val + '</span><div style="width:' + val.replace(/\s/gm, '') + ';height:100%;background: #D0E4FD;border-radius:3px;"></div></div>';
+        field: 'SnglTskPrg', title: '状态', width: 200, formatter: function (val,row) {
+        var value = Calendar.getInstance(row.DateComp).format('yyyyMMdd HH:mm:ss');
+        if(value == '20010101 00:00:00')
+            return "正在运行"
+        else
+            return '已完成';
     }, formatter_back: function (val) {
         return val;
     }
