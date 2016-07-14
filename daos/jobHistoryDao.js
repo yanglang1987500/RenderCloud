@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
     port:'3306',
     database:'rendercloud',
     user     : 'root',
-    password : ''
+    password : '123456'
 });
 
 

@@ -3,12 +3,10 @@ var __Events = {},
     toBeNotify = [],
     toBeCall = [],
     isCalling = false,
-    windowLoaded = false,
     QUEUE_TIMEOUT = 30,//队列执行间隔时长
     EVENT_PREFIX = 'TEMPORARYEVENT';//临时事件名称前缀，后缀为_+时间缀
-typeof window == 'undefined'?(window ={}):'';
 
-var Events = window.Events = {
+var Events = {
     addMethod:function(methodName,method){
         var that = this;
         if(typeof method === 'function' && this[methodName] == undefined){
@@ -104,55 +102,43 @@ var Events = window.Events = {
     /**
      * 列队执行 无参时代表调起队列开始执行
      * @param callback 回调方法
+     * @param duration 此回调方法需要消耗的时间，也就是说，距离下个回调需要的时间间隔
      */
-    queue:function(callback){
+    queue:function(callback,duration){
         if(arguments.length == 0 && !isCalling){
             _reCall();
             return this;
         }
-        if(isCalling || !windowLoaded){
-            toBeCall.push(callback);
+        if(isCalling){
+            toBeCall.push({
+                callback:callback,
+                duration:duration
+            });
             return this;
         }
 
         isCalling = true;
-        callback();
+        try{
+            callback();
+        }catch(e){console.log(e);}
 
-        setTimeout(_reCall,QUEUE_TIMEOUT);
+        setTimeout(_reCall,duration?duration:QUEUE_TIMEOUT);
         function _reCall(){
             var flag = false;
             for(var i = 0;i < toBeCall.length;i++) {
                 flag = true;
-                toBeCall[i].call();
-                setTimeout(arguments.callee,QUEUE_TIMEOUT);
+                try{
+                    toBeCall[i].callback.call();
+                }catch(e){console.log(e);}
+                setTimeout(arguments.callee,toBeCall[i].duration?toBeCall[i].duration:QUEUE_TIMEOUT);
                 toBeCall.splice(i,1);
                 break;
             }
             isCalling = flag;
         }
         return this;
-    },
-    isIOS9:(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) && Boolean(navigator.userAgent.match(/OS [9]_\d[_\d]* like Mac OS X/i)),
-    isMobile:/Mobile/g.test(navigator.userAgent),
-    isIOS:(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)),
-    ORIENTATION_LANDSCAPE:1,//横屏
-    ORIENTATION_PORTRAIT:0,//竖屏
-    orientation:0
-};
-//APP内 或 APP外且非IOS9
-if(!Events.isBrowser || (Events.isBrowser && !Events.isIOS9) ){
-    //app内直接设置为true不需要缓冲
-    windowLoaded = true;
-}else{
-    if(document.readyState === 'complete'){
-        windowLoaded = true;
-    }else{
-        window.addEventListener('load',function(){
-            windowLoaded = true;
-            Events.queue();
-        });
     }
-}
+};
 /** =================================================== **/
 
 module.exports = Events;
