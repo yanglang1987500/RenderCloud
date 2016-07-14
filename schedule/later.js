@@ -25,7 +25,7 @@ function fetchJobData(){
         port:'3306',
         database:'rendercloud',
         user     : 'root',
-        password : '123456'
+        password : ''
     });
     connection.query("truncate job",function(err,result){
         connection.query("truncate jobdetails",function(err,result){

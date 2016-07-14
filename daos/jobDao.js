@@ -1,4 +1,4 @@
-var urls = ['http://localhost:10086/api/jobs','http://10.142.100.32:8080/api/jobs', 'http://10.142.100.70:8080/api/jobs'];
+var urls = ['http://61.144.43.89:10103/api/jobs'];
 var Client = require('node-rest-client').Client;
 var client = new Client();
 var when = require('when');
