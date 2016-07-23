@@ -22,7 +22,7 @@ Job.prototype.id = 'job';
 Job.prototype.init = function (options) {
     var that = this;
     this.options = $.extend({}, options);
-    that.setTitle('作业实时查询').setHeight(700).setWidth(780);
+    that.setTitle('实时查询').setHeight(700).setWidth(780);
     frameworkBase.init.call(this, options);
     this.loadBaseView();
 };

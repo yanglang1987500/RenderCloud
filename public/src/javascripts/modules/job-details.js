@@ -25,7 +25,7 @@ JobDetails.prototype.init = function (options) {
     if (!this.jobId)
         throw new Error('请提供jobId');
     this.options = $.extend({}, options);
-    that.setTitle('作业详情查询').setHeight($(window).height()*.7).setWidth($(window).width()*.6);
+    that.setTitle('详情查询').setHeight($(window).height()*.7).setWidth($(window).width()*.6);
     frameworkBase.init.call(this, options);
     this.loadBaseView();
 };

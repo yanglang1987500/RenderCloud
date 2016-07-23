@@ -22,7 +22,7 @@ HistoryJob.prototype.id = 'job-history';
 HistoryJob.prototype.init = function(options){
     var that = this;
     this.options = $.extend({},options);
-    that.setTitle('机时统计分析').setHeight(700).setWidth(780);
+    that.setTitle('统计分析').setHeight(700).setWidth(780);
     frameworkBase.init.call(this,options);
     this.loadBaseView();
 };
