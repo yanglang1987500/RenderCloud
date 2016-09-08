@@ -8,7 +8,7 @@ var builder = ProtoBuf.loadProtoFile('./Message.proto'),
     MessageIn = Message.MessageIn,
     MessageOut = Message.MessageOut;
 
-var exBuffer = new ExBuffer();
+var exBuffer = new ExBuffer().uint32Head().bigEndian();
 
 const CONST = {
     HOST:'127.0.0.1',
@@ -49,12 +49,12 @@ function _doCall(func,args,file,callback){
 
     var buffer = message.encode().toBuffer();
     debugger;
-    var headBuf = new Buffer(2);
+    var headBuf = new Buffer(4);
 
     var len = Buffer.byteLength(buffer);
 
     //写入2个字节表示本次包长
-    headBuf.writeUInt16BE(len, 0)
+    headBuf.writeUInt32BE(len, 0)
     client.write(headBuf);
 
     client.write(buffer);

@@ -15,14 +15,15 @@ var builder = ProtoBuf.loadProtoFile('./Message.proto'),
 
 chatServer.on('connection', function(client) {
     client.name = client.remoteAddress + ':' + client.remotePort;
-    console.log(client.remoteAddress);
-    var exBuffer = new ExBuffer();
+    var exBuffer = new ExBuffer().uint32Head().bigEndian();
     exBuffer.on('data',function(ret){
         var message = MessageIn.decode(ret);
         broadcast(message,client);
     });
+    exBuffer.on('process',function(ret){
+        console.log(ret);
+    });
     client.on('data', function(ret) {
-        console.log(new String(ret));
         exBuffer.put(ret);//只要收到数据就往ExBuffer里面put
     });
     client.on('error', function(e) {
@@ -48,11 +49,11 @@ function reply(client,success,msg,data,callid){
     message.set('data',JSON.stringify(data));
 
     var buffer = message.encode().toBuffer();
-    var headBuf = new Buffer(2);
+    var headBuf = new Buffer(4);
     var len = Buffer.byteLength(buffer);
 
     //写入2个字节表示本次包长
-    headBuf.writeUInt16BE(len, 0)
+    headBuf.writeUInt32BE(len, 0)
     client.write(headBuf);
     client.write(buffer);
 }
