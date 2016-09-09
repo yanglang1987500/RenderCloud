@@ -3,7 +3,7 @@
  */
 
 var jobHistory = require('./job-history');
-var echarts = require('../libs/echarts/echarts.common.min.js');
+var echarts = require('../libs/echarts/echarts.min.js');
 var JobHistoryModule1 = function () {
 };
 

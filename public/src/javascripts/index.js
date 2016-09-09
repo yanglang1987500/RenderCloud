@@ -6,6 +6,7 @@ require('./libs/calendar.js');
 require('./libs/sweetalert.min');
 require('../stylesheets/sweetalert.css');
 require('../stylesheets/index.scss');
+
 require('./libs/utils');
 var prefix = './modules/';
 var Events = require('./framework/framework-events');

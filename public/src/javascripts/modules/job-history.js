@@ -4,7 +4,6 @@
 
 var frameworkBase = require('../framework/framework-base');
 require('../libs/jquery.easyui.min.js');
-var echarts = require('../libs/echarts/echarts.common.min.js');
 require('../../stylesheets/modules/job-history.scss');
 require('../../stylesheets/easyui.css');
 var HistoryJob = function(){ };

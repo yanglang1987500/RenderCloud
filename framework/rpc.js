@@ -1,7 +1,7 @@
 var net = require('net');
 var guid = require('guid');
 var ProtoBuf = require('protobufjs');
-var ExBuffer = require('ExBuffer');
+var ExBuffer = require('./ExBuffer');
 var Events = require('./framework-events');
 var builder = ProtoBuf.loadProtoFile('./Message.proto'),
     Message = builder.build('protobuf'),
@@ -53,7 +53,7 @@ function _doCall(func,args,file,callback){
 
     var len = Buffer.byteLength(buffer);
 
-    //写入2个字节表示本次包长
+    //写入4个字节表示本次包长
     headBuf.writeUInt32BE(len, 0)
     client.write(headBuf);
 

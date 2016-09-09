@@ -4,7 +4,7 @@
 var net = require('net');
 var handler = require('../daos/handler');
 var fs = require('fs');
-var ExBuffer = require('ExBuffer');
+var ExBuffer = require('./ExBuffer');
 var chatServer = net.createServer();
 var ProtoBuf = require('protobufjs');
 
@@ -21,9 +21,10 @@ chatServer.on('connection', function(client) {
         broadcast(message,client);
     });
     exBuffer.on('process',function(ret){
-        console.log(ret);
+        console.log("process : "+ret);
     });
     client.on('data', function(ret) {
+        console.log(ret.length);
         exBuffer.put(ret);//只要收到数据就往ExBuffer里面put
     });
     client.on('error', function(e) {
@@ -52,7 +53,7 @@ function reply(client,success,msg,data,callid){
     var headBuf = new Buffer(4);
     var len = Buffer.byteLength(buffer);
 
-    //写入2个字节表示本次包长
+    //写入4个字节表示本次包长
     headBuf.writeUInt32BE(len, 0)
     client.write(headBuf);
     client.write(buffer);

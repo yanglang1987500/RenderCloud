@@ -3,7 +3,6 @@
  */
 
 var jobHistory = require('./job-history');
-var echarts = require('../libs/echarts/echarts.common.min.js');
 var JobHistoryModule2 = function(){ };
 //继承自作业分析类
 JobHistoryModule2.prototype = $.extend({},jobHistory);
