@@ -38,7 +38,13 @@ module.exports = [
     {field: 'Errs', title: '错误', width: 400},
     {
         field: 'singleTime', title: '任务时间', width: 400, formatter: function (val, row) {
-        return (Calendar.getInstance(row.Comp).getTime() - Calendar.getInstance(row.Start).getTime()) / 1000;
+        var time =  (Calendar.getInstance(row.Comp).getTime() - Calendar.getInstance(row.Start).getTime()) ;
+        if(time/(1000*60)>=10)
+            time = (Calendar.getInstance(row.Comp).getTime() - Calendar.getInstance(row.StartRen).getTime()) ;
+        console.log(time);
+        if(time<=0)
+            return '0:00:00';
+        return Calendar.formatMillisecond(time);
     }
     }
 ];

@@ -1,4 +1,4 @@
-var urls = ['http://localhost:10086/api/jobs','http://10.142.100.32:8080/api/jobs', 'http://10.142.100.70:8080/api/jobs'];
+var urls = ['http://localhost:10086/api/jobs'];
 var Client = require('node-rest-client').Client;
 var client = new Client();
 var when = require('when');
@@ -54,7 +54,6 @@ module.exports = {
         }
     },
     queryJobDetails:function(host,jobId,callback){
-        console.log(count++);
         client.get(host+'/api/tasks?JobID=' + jobId, function (data, response) {
             callback && callback(JSON.parse(data.toString()));
         });

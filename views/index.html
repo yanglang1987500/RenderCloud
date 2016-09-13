@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>XXXX平台</title>
+    <title>迅染云平台</title>
     <!--[if lte IE 8]>
     <script src="ieBetter.js"></script>
     <![endif]-->
@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="logobar">XXXX平台</div>
+        <div class="logobar">迅染云平台</div>
         <div class="topbar">
             <p class="welcomeinfo">您好，<%=session.userInfo.username%>，欢迎回来</p>
             <div class="toolbar clearfix">
@@ -33,8 +33,11 @@
         <div class="menubar">
             <ul id="menu">
                 <li data-modules="./modules/job"  id="immediateSearch">实时查询</li>
+                <%
+                if(session.userInfo.username=='admin'){
+                %><li data-modules="./modules/job-admin"  id="immediateSearchAdmin">管理员实时查询</li><%
+                }%>
                 <li data-modules="./modules/job-history" id="historySearch">统计分析</li>
-                <li data-modules="./modules/k-charts" id="kCharts">K线图</li>
                 <li id="aboutus" data-modules="./modules/aboutus">关于我们</li>
             </ul>
         </div>

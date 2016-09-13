@@ -109,6 +109,44 @@
         return new Calendar.prototype.init(date);
     };
 
+
+    /**
+     * 获取服务器时间
+     * @returns {Date}
+     */
+    Calendar.getServerTime = function () {
+        var xmlHttp = false;
+        //获取服务器时间
+        try {
+            xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try {
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e2) {
+                xmlHttp = false;
+            }
+        }
+
+        if (!xmlHttp && typeof XMLHttpRequest != 'undefined') {
+            xmlHttp = new XMLHttpRequest();
+        }
+
+        xmlHttp.open("GET", "null", false);
+        xmlHttp.setRequestHeader("Range", "bytes=-1");
+        xmlHttp.send(null);
+        return new Date(xmlHttp.getResponseHeader("Date"));
+    };
+
+    /**
+     * 将毫秒数格式化为h:mm:ss
+     * @param millisecond 毫秒数
+     * @returns {String}
+     */
+    Calendar.formatMillisecond = function (millisecond) {
+        var time = this.getInstance(millisecond).getTime();
+        return ((time.getDate()-1)*24+time.getUTCHours())+":"+(time.getMinutes())+":"+time.getSeconds();
+    };
+
     Calendar.YEAR = 1;
     Calendar.MONTH = 2;
     Calendar.DATE = 3;
@@ -137,6 +175,7 @@
             "d+" : this.getDate(), //日
             "h+" : this.getHours() % 12 == 0 ? 12: this.getHours() % 12, //小时
             "H+" : this.getHours(), //小时
+            "U+" : this.getUTCHours(), //UTC小时
             "m+" : this.getMinutes(), //分
             "s+" : this.getSeconds(), //秒
             "q+" : Math.floor((this.getMonth() + 3) / 3), //季度

@@ -63,7 +63,7 @@ function fetchJobData(){
                                         detailArr.push(row);
                                     }
                                         var detailsql = 'INSERT INTO jobdetails(id,frames,starttime,startren,comptime,progress,error,singletime,jobid) VALUES ?';
-                                    connection.query(detailsql,[detailArr],function(){});
+                                    connection.query(detailsql,[detailArr],function(error,result){console.log(error);});
                                 });
                             },50);
                         })(data.host,item._id);
