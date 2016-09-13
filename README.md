@@ -1,4 +1,4 @@
-[RenderCloud](https://github.com/yanglang1987500/RenderCloud) — 基本webpack搭建的一套模块化框架
+[RenderCloud](https://github.com/yanglang1987500/RenderCloud) — 基于webpack搭建的一套模块化框架
 ==================================================
 
 简介
